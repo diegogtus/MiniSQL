@@ -1406,6 +1406,8 @@ class Lexer {
     while (true) {
       zzMarkedPosL = zzMarkedPos;
 
+      yychar+= zzMarkedPosL-zzStartRead;
+
       boolean zzR = false;
       int zzCh;
       int zzCharCount;
@@ -1534,7 +1536,7 @@ class Lexer {
             // fall through
           case 11: break;
           case 2: 
-            { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar);return ERROR;
+            { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;
             } 
             // fall through
           case 12: break;
@@ -1569,7 +1571,7 @@ class Lexer {
             // fall through
           case 18: break;
           case 9: 
-            { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar); return RESERVADA;
+            { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return RESERVADA;
             } 
             // fall through
           case 19: break;
