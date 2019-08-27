@@ -92,6 +92,7 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 {Reserved} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return RESERVADA;}
 {Identifier} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IDENTIFICADOR;}
 {WhiteSpace}                   { /* ignore */ }
+\.[0-9]*"E"[0-9]* | \.[0-9]*"E"[0-9]* {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;} 
 {Puntuaction} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTUACION;}
 {Comment}                      { /* ignore */ }
 {BoolConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_BOOLEANA;}
