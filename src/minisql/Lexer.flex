@@ -5,6 +5,7 @@ import static minisql.Token.*;
 %type Token
 %line
 %column
+%char
 
 L=[a-b]
 D=[0-9]
@@ -89,7 +90,7 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 
 [\n] {return SALTO;}
 
-{Reserved} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar); return RESERVADA;}
+{Reserved} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return RESERVADA;}
 {Identifier} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IDENTIFICADOR;}
 {WhiteSpace}                   { /* ignore */ }
 {Puntuaction} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTUACION;}
@@ -100,5 +101,5 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 "'"[:jletterdigit:]*"'" { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
 {Puntuaction}                   { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OPERADOR;}
 
-[^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar);return ERROR;}
-{UNFINISHED_COMMENT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar);return ERROR;} 
+[^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;}
+{UNFINISHED_COMMENT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;} 

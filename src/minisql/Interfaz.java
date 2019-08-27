@@ -301,7 +301,7 @@ public class Interfaz extends javax.swing.JFrame {
                     }
                     else{
                         txta_Output.append(lexer.yytext()+"           line "+lexer.line+
-                       " column"+ lexer.column+"-"+lexer.column2+ " is " +token+" "+"\n");
+                       " column "+ lexer.column+"-"+(Integer.parseInt(lexer.column)+lexer.yylength())+ " is " +token+" "+"\n");
                         txta_Output.append("\n");
                     }
                 break;
@@ -313,7 +313,7 @@ public class Interfaz extends javax.swing.JFrame {
             case CONSTANTE_ENTERA:              
             case RESERVADA://aqui se guardan las variables y los numeros
                 txta_Output.append(lexer.yytext()+"           line "+lexer.line+
-                       " column"+  lexer.column+"-"+lexer.column2+ " is " +token+" "+"\n");
+                       " column "+  lexer.column+"-"+(Integer.parseInt(lexer.column)+lexer.yylength())+ " is " +token+" "+"\n");
                 txta_Output.append("\n");
                 break;
             default:
