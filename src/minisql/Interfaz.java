@@ -17,6 +17,12 @@
 
 package minisql;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author diego
@@ -39,9 +45,9 @@ public class Interfaz extends javax.swing.JFrame {
 
         button1 = new java.awt.Button();
         label1 = new java.awt.Label();
-        jTextField1 = new javax.swing.JTextField();
+        txt_path = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txta_Input = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -49,12 +55,20 @@ public class Interfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         button1.setLabel("Cargar");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
-        label1.setText("label1");
+        label1.setText("Ruta:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_path.setEditable(false);
+        txt_path.setName("txt_path"); // NOI18N
+
+        txta_Input.setColumns(20);
+        txta_Input.setRows(5);
+        jScrollPane1.setViewportView(txta_Input);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -70,8 +84,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addComponent(txt_path, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -90,7 +104,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
@@ -105,11 +119,26 @@ public class Interfaz extends javax.swing.JFrame {
         );
 
         button1.getAccessibleContext().setAccessibleName("btn_Cargar");
-        label1.getAccessibleContext().setAccessibleName("Ruta:");
+        label1.getAccessibleContext().setAccessibleName("lbl_Ruta");
+        txt_path.getAccessibleContext().setAccessibleName("txt_path");
+        txt_path.getAccessibleContext().setAccessibleDescription("");
         jButton1.getAccessibleContext().setAccessibleName("btn_Analizar");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+         JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", 
+                "txt", "text","frag");
+        fc.setFileFilter(filter);
+        if( fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION ){
+            txt_path.setText(fc.getSelectedFile().getAbsolutePath());
+            txta_Input.setText("");
+            leer();            
+        }
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,10 +180,43 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     private java.awt.Label label1;
+    private javax.swing.JTextField txt_path;
+    private javax.swing.JTextArea txta_Input;
     // End of variables declaration//GEN-END:variables
+
+    private void leer() {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+			// Apertura del fichero y creacion de BufferedReader para poder
+			// hacer una lectura comoda (disponer del metodo readLine()).
+			archivo = new File (txt_path.getText());
+                        NombreArchivo=archivo.getName();
+                        NombreArchivo=NombreArchivo.replace(".txt", "");
+                        fr = new FileReader (archivo);
+			br = new BufferedReader(fr);
+			// Lectura del fichero
+			String linea;
+			while((linea=br.readLine())!=null)
+				txta_Input.append(linea + '\n');           
+        }
+        catch(Exception e){
+           e.printStackTrace();
+        }finally{
+           // En el finally cerramos el fichero, para asegurarnos
+           // que se cierra tanto si todo va bien como si salta 
+           // una excepcion.
+           try{
+              if( null != fr ){
+                 fr.close();
+              }
+           }catch (Exception e2){
+              e2.printStackTrace();
+           }
+        }
+    }
 
 }
