@@ -17,14 +17,15 @@ WhiteSpace     = {LineTerminator} | [ \t\f]
 /* comments */
 // Comment can be the last line of the file, without line terminator.
 EndOfLineComment     = "--" {InputCharacter}* {LineTerminator}?
-DocumentationComment = "/**" {CommentContent} "*"+ "/" 
 CommentContent       = ( [^*] | \*+ [^/*] )*
+DocumentationComment = "/**" {CommentContent} "*"+ "/" 
 TraditionalComment   = "--" [^*] | "--"
+MultiLine = "/*" {CommentContent} "*"+ "/"
 MULTILINE_COMMENT = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 UNFINISHED_COMMENT = "/*" [^*]+
 SINGLELINE_COMMENT = "--" [^\r\n]* [\r|\n|\r\n]?
 
-Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment} | MULTILINE_COMMENT | SINGLELINE_COMMENT
+Comment = {MultiLine} | {TraditionalComment} | {EndOfLineComment} | {DocumentationComment} | {MULTILINE_COMMENT} | {SINGLELINE_COMMENT}
 
 IntConstant = [0-9]* | "0x"[0-9a-fA-F]+ |"0X"[0-9a-fA-F]+ 
 
@@ -99,5 +100,5 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 "'"[:jletter:] [:jletterdigit:]*"'" { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
 {Puntuaction}                   { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OPERADOR;}
 
-[^]   {return ERROR;}
-{UNFINISHED_COMMENT} {return ERROR;} 
+[^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar);return ERROR;}
+{UNFINISHED_COMMENT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar);return ERROR;} 
