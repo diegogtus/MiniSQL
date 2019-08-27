@@ -3,6 +3,8 @@ import static minisql.Token.*;
 %% 
 %class Lexer
 %type Token
+%line
+%column
 
 L=[a-b]
 D=[0-9]
@@ -14,15 +16,15 @@ WhiteSpace     = {LineTerminator} | [ \t\f]
 
 /* comments */
 // Comment can be the last line of the file, without line terminator.
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+EndOfLineComment     = "--" {InputCharacter}* {LineTerminator}?
 DocumentationComment = "/**" {CommentContent} "*"+ "/" 
 CommentContent       = ( [^*] | \*+ [^/*] )*
-TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+TraditionalComment   = "--" [^*] | "--"
 MULTILINE_COMMENT = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 UNFINISHED_COMMENT = "/*" [^*]+
 SINGLELINE_COMMENT = "--" [^\r\n]* [\r|\n|\r\n]?
 
-Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment} | MULTILINE_COMMENT | UNFINISHED_COMMENT | SINGLELINE_COMMENT
+Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment} | MULTILINE_COMMENT | SINGLELINE_COMMENT
 
 IntConstant = [0-9]* | "0x"[0-9a-fA-F]+ |"0X"[0-9a-fA-F]+ 
 
@@ -73,25 +75,29 @@ Reserved = "ABSOLUTE"|"ACTION"|"ADA"|"ADD"|"ALL"|"ALLOCATE"|"ALTER"|"AND"|"ANY"|
 
 Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="| 
         "&&"| "||"| "!"| ";"| ","| "."| "["| "]"| "("| ")"| "{"| "}"| "[]"| 
-        "()"| "{}"
+        "()"| "{}" | "@" | "#" | "##" | ":" | "`"
 
 %{
 	public String lexeme;
+        public String column;
+        public String column2;
+        public String line;
 %}
 %%
 
 
 [\n] {return SALTO;}
 
-{Reserved} {return RESERVADA;}
-{Identifier} {return IDENTIFICADOR;}
+{Reserved} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar); return RESERVADA;}
+{Identifier} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IDENTIFICADOR;}
 {WhiteSpace}                   { /* ignore */ }
-{Puntuaction} {return PUNTUACION;}
+{Puntuaction} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTUACION;}
 {Comment}                      { /* ignore */ }
-{BoolConstant} {return CONSTANTE_BOOLEANA;}
-{IntConstant} {return CONSTANTE_ENTERA;}
-[-+]?[0-9]+"."|[-+]?[0-9]+"."([0-9]+|("E"|"e")[-+]?[0-9]+|[0-9]+("E"|"e")[-+]?[0-9]+) { return FLOAT;}
-\"[^\r\n]+\" { return STRING;}
-{Puntuaction}                   { return OPERADOR;}
+{BoolConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_BOOLEANA;}
+{IntConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_ENTERA;}
+[-+]?[0-9]+"."|[-+]?[0-9]+"."([0-9]+|("E"|"e")[-+]?[0-9]+|[0-9]+("E"|"e")[-+]?[0-9]+) {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return FLOAT;}
+"'"[:jletter:] [:jletterdigit:]*"'" { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
+{Puntuaction}                   { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OPERADOR;}
 
 [^]   {return ERROR;}
+{UNFINISHED_COMMENT} {return ERROR;} 

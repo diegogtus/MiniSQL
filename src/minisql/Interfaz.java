@@ -19,8 +19,15 @@ package minisql;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -28,7 +35,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author diego
  */
 public class Interfaz extends javax.swing.JFrame {
-
+    
+    String NombreArchivo=null;
     /** Creates new form Interfaz */
     public Interfaz() {
         initComponents();
@@ -49,7 +57,7 @@ public class Interfaz extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txta_Input = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txta_Output = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,11 +78,16 @@ public class Interfaz extends javax.swing.JFrame {
         txta_Input.setRows(5);
         jScrollPane1.setViewportView(txta_Input);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txta_Output.setColumns(20);
+        txta_Output.setRows(5);
+        jScrollPane2.setViewportView(txta_Output);
 
         jButton1.setText("Analizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,7 +106,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(126, 126, 126))
         );
@@ -140,6 +153,16 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_button1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            txta_Output.setText("");
+            ProbarLexerFile(txt_path.getText() );//llamando al metodo ProbarLexerFile();
+            Escritor();
+        }
+        catch(IOException ex){
+        System.out.println(ex.getMessage());}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -180,10 +203,10 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     private java.awt.Label label1;
     private javax.swing.JTextField txt_path;
     private javax.swing.JTextArea txta_Input;
+    private javax.swing.JTextArea txta_Output;
     // End of variables declaration//GEN-END:variables
 
     private void leer() {
@@ -219,4 +242,83 @@ public class Interfaz extends javax.swing.JFrame {
         }
     }
 
+    private void Escritor() {
+        File fichero=new File(NombreArchivo+".out");//creando fichero txt en raiz
+        PrintWriter writer;
+        try{
+            writer=new PrintWriter(fichero);
+            writer.print(txta_Output.getText());//ingresado ecuacion
+            writer.close();
+            JOptionPane.showMessageDialog(null, 
+                    "InfoBox: Se ha analizado con éxito el archivo y se ha "
+                            + "creado un archivo de salida en la carpeta raíz llamado "
+                            +NombreArchivo, "¡ATENCIÓN!",JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(FileNotFoundException ex){
+            Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void ProbarLexerFile(String path) throws IOException{
+//    File fichero=new File("fichero.txt");//creando fichero txt en raiz
+//    PrintWriter writer;
+//    try{
+//        writer=new PrintWriter(fichero);
+//        writer.print(txta_Input.getText());//ingresado ecuacion
+//        writer.close();
+//    }
+//    catch(FileNotFoundException ex){
+//        Logger.getLogger(Principal_frm.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+    Reader reader;
+    reader = new BufferedReader(new FileReader(path));
+    Lexer lexer=new Lexer(reader);
+    int linea;
+    linea=1;
+
+    //se comienza a evaluar cada caracter
+    while(true){
+        Token token=lexer.yylex();
+                
+   
+        if(token==null){
+            txta_Output.append("FIN");//mostrando los resultados
+            txta_Output.append("\n");
+            return;
+        }//termina evaluacion
+        switch(token){
+            case ERROR:
+      
+                txta_Output.append("*** Error line "+ lexer.line+
+                    "** Unrecognized char: '"+lexer.yytext()+"'"
+                    + "\n");
+                txta_Output.append("\n");
+                break;
+       
+            case IDENTIFICADOR: //aqui se guardan las variables y los numeros
+                    if(lexer.yylength()>31){
+                        txta_Output.append(lexer.yytext()+"***Truncado por el largo***");
+                    }
+                    else{
+                        txta_Output.append(lexer.yytext()+"           line "+lexer.line+
+                       " column"+ lexer.column+"-"+lexer.column2+ " is " +token+" "+"\n");
+                        txta_Output.append("\n");
+                    }
+                break;
+                
+            case PUNTUACION:
+            case STRING:
+            case FLOAT:
+            case CONSTANTE_BOOLEANA:
+            case CONSTANTE_ENTERA:              
+            case RESERVADA://aqui se guardan las variables y los numeros
+                txta_Output.append(lexer.yytext()+"           line "+lexer.line+
+                       " column"+  lexer.column+"-"+lexer.column2+ " is " +token+" "+"\n");
+                txta_Output.append("\n");
+                break;
+            default:
+                break;
+        }	
+    }	
+}//termina mi edicion
 }
