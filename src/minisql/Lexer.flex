@@ -97,7 +97,7 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 {BoolConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_BOOLEANA;}
 {IntConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_ENTERA;}
 [-+]?[0-9]+"."|[-+]?[0-9]+"."([0-9]+|("E"|"e")[-+]?[0-9]+|[0-9]+("E"|"e")[-+]?[0-9]+) {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return FLOAT;}
-"'"[:jletter:] [:jletterdigit:]*"'" { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
+"'"[:jletterdigit:]*"'" { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
 {Puntuaction}                   { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OPERADOR;}
 
 [^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); column2=Integer.toString(yychar);return ERROR;}
