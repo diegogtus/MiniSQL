@@ -32,7 +32,7 @@ IntConstant = [0-9]* | "0x"[0-9a-fA-F]+ |"0X"[0-9a-fA-F]+
 
 BoolConstant = "0" | "1" | "NULL"
 
-Identifier = [:jletter:] [:jletterdigit:]*
+Identifier = [_a-zA-Z][_a-zA-Z0-9]*
 
 Reserved = "ABSOLUTE"|"ACTION"|"ADA"|"ADD"|"ALL"|"ALLOCATE"|"ALTER"|"AND"|"ANY"|"ARE"|"AS"|"ASC"|
         "ASSERTION"|"AT"|"AUTHORIZATION"|"AVG"|"BACKUP"|"BEGIN"|"BETWEEN"|"BIT"|
@@ -77,12 +77,11 @@ Reserved = "ABSOLUTE"|"ACTION"|"ADA"|"ADD"|"ALL"|"ALLOCATE"|"ALTER"|"AND"|"ANY"|
 
 Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="| 
         "&&"| "||"| "!"| ";"| ","| "."| "["| "]"| "("| ")"| "{"| "}"| "[]"| 
-        "()"| "{}" | "@" | "#" | "##" | ":" | "`"
+        "()"| "{}" | "@" | "#" | "##" 
 
 %{
 	public String lexeme;
         public String column;
-        public String column2;
         public String line;
 %}
 %%
@@ -98,7 +97,7 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 {BoolConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_BOOLEANA;}
 {IntConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_ENTERA;}
 [-+]?[0-9]+"."|[-+]?[0-9]+"."([0-9]+|("E"|"e")[-+]?[0-9]+|[0-9]+("E"|"e")[-+]?[0-9]+) {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return FLOAT;}
-"'"[:jletterdigit:]*"'" { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
+['][^'\n]*['] { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
 {Puntuaction}                   { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OPERADOR;}
 
 [^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;}
