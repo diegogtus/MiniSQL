@@ -1,0 +1,977 @@
+DECLARE           line 1 column 1-8 is RESERVADA 
+
+@           line 1 column 9-10 is PUNTUACION 
+
+sid_in           line 1 column 10-16 is IDENTIFICADOR 
+
+VARCHAR           line 1 column 17-24 is RESERVADA 
+
+(           line 1 column 24-25 is PUNTUACION 
+
+100           line 1 column 25-28 is CONSTANTE_ENTERA 
+
+)           line 1 column 28-29 is PUNTUACION 
+
+;           line 1 column 29-30 is PUNTUACION 
+
+SET           line 2 column 1-4 is RESERVADA 
+
+@           line 2 column 5-6 is PUNTUACION 
+
+sid_in           line 2 column 6-12 is IDENTIFICADOR 
+
+=           line 2 column 13-14 is PUNTUACION 
+
+'S-1-5-21-789336058-1580436667-1343024091-34374'           line 2 column 15-63 is STRING 
+
+;           line 2 column 63-64 is PUNTUACION 
+
+DECLARE           line 4 column 1-8 is RESERVADA 
+
+@           line 4 column 9-10 is PUNTUACION 
+
+sql           line 4 column 10-13 is IDENTIFICADOR 
+
+NVARCHAR           line 4 column 14-22 is IDENTIFICADOR 
+
+(           line 4 column 22-23 is PUNTUACION 
+
+MAX           line 4 column 23-26 is RESERVADA 
+
+)           line 4 column 26-27 is PUNTUACION 
+
+=           line 4 column 28-29 is PUNTUACION 
+
+'CREATE LOGIN [URL\dagutierrez] WITH SID = '           line 4 column 30-74 is STRING 
+
++           line 4 column 75-76 is PUNTUACION 
+
+CONVERT           line 4 column 77-84 is RESERVADA 
+
+(           line 4 column 84-85 is PUNTUACION 
+
+VARCHAR           line 4 column 85-92 is RESERVADA 
+
+(           line 4 column 92-93 is PUNTUACION 
+
+64           line 4 column 93-95 is CONSTANTE_ENTERA 
+
+)           line 4 column 95-96 is PUNTUACION 
+
+,           line 4 column 96-97 is PUNTUACION 
+
+CONVERT           line 4 column 98-105 is RESERVADA 
+
+(           line 4 column 105-106 is PUNTUACION 
+
+BINARY           line 4 column 106-112 is IDENTIFICADOR 
+
+(           line 4 column 112-113 is PUNTUACION 
+
+16           line 4 column 113-115 is CONSTANTE_ENTERA 
+
+)           line 4 column 115-116 is PUNTUACION 
+
+,           line 4 column 116-117 is PUNTUACION 
+
+SID_BINARY           line 4 column 117-127 is IDENTIFICADOR 
+
+(           line 4 column 127-128 is PUNTUACION 
+
+@           line 4 column 128-129 is PUNTUACION 
+
+sid_in           line 4 column 129-135 is IDENTIFICADOR 
+
+)           line 4 column 135-136 is PUNTUACION 
+
+)           line 4 column 136-137 is PUNTUACION 
+
+,           line 4 column 137-138 is PUNTUACION 
+
+1           line 4 column 139-140 is CONSTANTE_BOOLEANA 
+
+)           line 4 column 140-141 is PUNTUACION 
+
++           line 4 column 142-143 is PUNTUACION 
+
+';'           line 4 column 144-147 is STRING 
+
+;           line 4 column 147-148 is PUNTUACION 
+
+PRINT           line 6 column 1-6 is RESERVADA 
+
+@           line 6 column 7-8 is PUNTUACION 
+
+sql           line 6 column 8-11 is IDENTIFICADOR 
+
+EXEC           line 7 column 1-5 is RESERVADA 
+
+sys           line 7 column 6-9 is IDENTIFICADOR 
+
+.           line 7 column 9-10 is PUNTUACION 
+
+sp_executesql           line 7 column 10-23 is IDENTIFICADOR 
+
+@           line 7 column 24-25 is PUNTUACION 
+
+sql           line 7 column 25-28 is IDENTIFICADOR 
+
+;           line 7 column 28-29 is PUNTUACION 
+
+1580436667           line 10 column 56-66 is CONSTANTE_ENTERA 
+
+-           line 10 column 66-67 is PUNTUACION 
+
+1343024091           line 10 column 67-77 is CONSTANTE_ENTERA 
+
+-           line 10 column 77-78 is PUNTUACION 
+
+34374           line 10 column 78-83 is CONSTANTE_ENTERA 
+
+*** Error line 10** Unrecognized char: '''
+
+;           line 10 column 84-85 is PUNTUACION 
+
+*           line 10 column 85-86 is PUNTUACION 
+
+/           line 10 column 86-87 is PUNTUACION 
+
+SELECT           line 14 column 1-7 is RESERVADA 
+
+SUSER_SNAME           line 14 column 8-19 is IDENTIFICADOR 
+
+(           line 14 column 19-20 is PUNTUACION 
+
+CONVERT           line 14 column 20-27 is RESERVADA 
+
+(           line 14 column 27-28 is PUNTUACION 
+
+BINARY           line 14 column 28-34 is IDENTIFICADOR 
+
+(           line 14 column 34-35 is PUNTUACION 
+
+16           line 14 column 35-37 is CONSTANTE_ENTERA 
+
+)           line 14 column 37-38 is PUNTUACION 
+
+,           line 14 column 38-39 is PUNTUACION 
+
+SID_BINARY           line 14 column 39-49 is IDENTIFICADOR 
+
+(           line 14 column 49-50 is PUNTUACION 
+
+@           line 14 column 50-51 is PUNTUACION 
+
+sid_in           line 14 column 51-57 is IDENTIFICADOR 
+
+)           line 14 column 57-58 is PUNTUACION 
+
+)           line 14 column 58-59 is PUNTUACION 
+
+)           line 14 column 59-60 is PUNTUACION 
+
+;           line 14 column 60-61 is PUNTUACION 
+
+ALTER           line 17 column 1-6 is RESERVADA 
+
+TABLE           line 17 column 7-12 is RESERVADA 
+
+[           line 17 column 13-14 is PUNTUACION 
+
+dbo           line 17 column 14-17 is IDENTIFICADOR 
+
+]           line 17 column 17-18 is PUNTUACION 
+
+.           line 17 column 18-19 is PUNTUACION 
+
+[           line 17 column 19-20 is PUNTUACION 
+
+InformeViajes           line 17 column 20-33 is IDENTIFICADOR 
+
+]           line 17 column 33-34 is PUNTUACION 
+
+DROP           line 17 column 35-39 is RESERVADA 
+
+CONSTRAINT           line 17 column 40-50 is RESERVADA 
+
+[           line 17 column 51-52 is PUNTUACION 
+
+FK__InformeVi__NITCo__6A30C649           line 17 column 52-82 is IDENTIFICADOR 
+
+]           line 17 column 82-83 is PUNTUACION 
+
+GO           line 18 column 1-3 is RESERVADA 
+
+ALTER           line 19 column 1-6 is RESERVADA 
+
+TABLE           line 19 column 7-12 is RESERVADA 
+
+[           line 19 column 13-14 is PUNTUACION 
+
+dbo           line 19 column 14-17 is IDENTIFICADOR 
+
+]           line 19 column 17-18 is PUNTUACION 
+
+.           line 19 column 18-19 is PUNTUACION 
+
+[           line 19 column 19-20 is PUNTUACION 
+
+InformeViajes           line 19 column 20-33 is IDENTIFICADOR 
+
+]           line 19 column 33-34 is PUNTUACION 
+
+DROP           line 19 column 35-39 is RESERVADA 
+
+CONSTRAINT           line 19 column 40-50 is RESERVADA 
+
+[           line 19 column 51-52 is PUNTUACION 
+
+FK__InformeVi__Codig__6B24EA82           line 19 column 52-82 is IDENTIFICADOR 
+
+]           line 19 column 82-83 is PUNTUACION 
+
+GO           line 20 column 1-3 is RESERVADA 
+
+ALTER           line 21 column 1-6 is RESERVADA 
+
+TABLE           line 21 column 7-12 is RESERVADA 
+
+[           line 21 column 13-14 is PUNTUACION 
+
+dbo           line 21 column 14-17 is IDENTIFICADOR 
+
+]           line 21 column 17-18 is PUNTUACION 
+
+.           line 21 column 18-19 is PUNTUACION 
+
+[           line 21 column 19-20 is PUNTUACION 
+
+Inactividad           line 21 column 20-31 is IDENTIFICADOR 
+
+]           line 21 column 31-32 is PUNTUACION 
+
+DROP           line 21 column 33-37 is RESERVADA 
+
+CONSTRAINT           line 21 column 38-48 is RESERVADA 
+
+[           line 21 column 49-50 is PUNTUACION 
+
+FK__Inactivid__Placa__4CA06362           line 21 column 50-80 is IDENTIFICADOR 
+
+]           line 21 column 80-81 is PUNTUACION 
+
+GO           line 22 column 1-3 is RESERVADA 
+
+ALTER           line 23 column 1-6 is RESERVADA 
+
+TABLE           line 23 column 7-12 is RESERVADA 
+
+[           line 23 column 13-14 is PUNTUACION 
+
+dbo           line 23 column 14-17 is IDENTIFICADOR 
+
+]           line 23 column 17-18 is PUNTUACION 
+
+.           line 23 column 18-19 is PUNTUACION 
+
+[           line 23 column 19-20 is PUNTUACION 
+
+Despidos           line 23 column 20-28 is IDENTIFICADOR 
+
+]           line 23 column 28-29 is PUNTUACION 
+
+DROP           line 23 column 30-34 is RESERVADA 
+
+CONSTRAINT           line 23 column 35-45 is RESERVADA 
+
+[           line 23 column 46-47 is PUNTUACION 
+
+FK__Despidos__NITDes__59063A47           line 23 column 47-77 is IDENTIFICADOR 
+
+]           line 23 column 77-78 is PUNTUACION 
+
+GO           line 24 column 1-3 is RESERVADA 
+
+ALTER           line 25 column 1-6 is RESERVADA 
+
+TABLE           line 25 column 7-12 is RESERVADA 
+
+[           line 25 column 13-14 is PUNTUACION 
+
+dbo           line 25 column 14-17 is IDENTIFICADOR 
+
+]           line 25 column 17-18 is PUNTUACION 
+
+.           line 25 column 18-19 is PUNTUACION 
+
+[           line 25 column 19-20 is PUNTUACION 
+
+Conductor           line 25 column 20-29 is IDENTIFICADOR 
+
+]           line 25 column 29-30 is PUNTUACION 
+
+DROP           line 25 column 31-35 is RESERVADA 
+
+CONSTRAINT           line 25 column 36-46 is RESERVADA 
+
+[           line 25 column 47-48 is PUNTUACION 
+
+FK__Conductor__Placa__5070F446           line 25 column 48-78 is IDENTIFICADOR 
+
+]           line 25 column 78-79 is PUNTUACION 
+
+GO           line 26 column 1-3 is RESERVADA 
+
+ALTER           line 27 column 1-6 is RESERVADA 
+
+TABLE           line 27 column 7-12 is RESERVADA 
+
+[           line 27 column 13-14 is PUNTUACION 
+
+dbo           line 27 column 14-17 is IDENTIFICADOR 
+
+]           line 27 column 17-18 is PUNTUACION 
+
+.           line 27 column 18-19 is PUNTUACION 
+
+[           line 27 column 19-20 is PUNTUACION 
+
+Conductor           line 27 column 20-29 is IDENTIFICADOR 
+
+]           line 27 column 29-30 is PUNTUACION 
+
+DROP           line 27 column 31-35 is RESERVADA 
+
+CONSTRAINT           line 27 column 36-46 is RESERVADA 
+
+[           line 27 column 47-48 is PUNTUACION 
+
+FK__Conductor__NITCo__4F7CD00D           line 27 column 48-78 is IDENTIFICADOR 
+
+]           line 27 column 78-79 is PUNTUACION 
+
+GO           line 28 column 1-3 is RESERVADA 
+
+ALTER           line 29 column 1-6 is RESERVADA 
+
+TABLE           line 29 column 7-12 is RESERVADA 
+
+[           line 29 column 13-14 is PUNTUACION 
+
+dbo           line 29 column 14-17 is IDENTIFICADOR 
+
+]           line 29 column 17-18 is PUNTUACION 
+
+.           line 29 column 18-19 is PUNTUACION 
+
+[           line 29 column 19-20 is PUNTUACION 
+
+Averia_Reparacion           line 29 column 20-37 is IDENTIFICADOR 
+
+]           line 29 column 37-38 is PUNTUACION 
+
+DROP           line 29 column 39-43 is RESERVADA 
+
+CONSTRAINT           line 29 column 44-54 is RESERVADA 
+
+[           line 29 column 55-56 is PUNTUACION 
+
+FK__Averia_Re__Pieza__6477ECF3           line 29 column 56-86 is IDENTIFICADOR 
+
+]           line 29 column 86-87 is PUNTUACION 
+
+GO           line 30 column 1-3 is RESERVADA 
+
+CREATE           line 32 column 1-7 is RESERVADA 
+
+TABLE           line 32 column 8-13 is RESERVADA 
+
+[           line 32 column 14-15 is PUNTUACION 
+
+dbo           line 32 column 15-18 is IDENTIFICADOR 
+
+]           line 32 column 18-19 is PUNTUACION 
+
+.           line 32 column 19-20 is PUNTUACION 
+
+[           line 32 column 20-21 is PUNTUACION 
+
+Reparaciones           line 32 column 21-33 is IDENTIFICADOR 
+
+]           line 32 column 33-34 is PUNTUACION 
+
+(           line 32 column 34-35 is PUNTUACION 
+
+[           line 33 column 2-3 is PUNTUACION 
+
+Codigo           line 33 column 3-9 is IDENTIFICADOR 
+
+]           line 33 column 9-10 is PUNTUACION 
+
+[           line 33 column 11-12 is PUNTUACION 
+
+int           line 33 column 12-15 is IDENTIFICADOR 
+
+]           line 33 column 15-16 is PUNTUACION 
+
+IDENTITY           line 33 column 17-25 is RESERVADA 
+
+(           line 33 column 25-26 is PUNTUACION 
+
+1           line 33 column 26-27 is CONSTANTE_BOOLEANA 
+
+,           line 33 column 27-28 is PUNTUACION 
+
+1           line 33 column 28-29 is CONSTANTE_BOOLEANA 
+
+)           line 33 column 29-30 is PUNTUACION 
+
+NOT           line 33 column 31-34 is RESERVADA 
+
+NULL           line 33 column 35-39 is RESERVADA 
+
+,           line 33 column 39-40 is PUNTUACION 
+
+[           line 34 column 2-3 is PUNTUACION 
+
+NIT_Mecanico           line 34 column 3-15 is IDENTIFICADOR 
+
+]           line 34 column 15-16 is PUNTUACION 
+
+[           line 34 column 17-18 is PUNTUACION 
+
+nvarchar           line 34 column 18-26 is IDENTIFICADOR 
+
+]           line 34 column 26-27 is PUNTUACION 
+
+(           line 34 column 27-28 is PUNTUACION 
+
+128           line 34 column 28-31 is CONSTANTE_ENTERA 
+
+)           line 34 column 31-32 is PUNTUACION 
+
+NULL           line 34 column 33-37 is RESERVADA 
+
+,           line 34 column 37-38 is PUNTUACION 
+
+[           line 35 column 2-3 is PUNTUACION 
+
+FechaReparacion           line 35 column 3-18 is IDENTIFICADOR 
+
+]           line 35 column 18-19 is PUNTUACION 
+
+[           line 35 column 20-21 is PUNTUACION 
+
+date           line 35 column 21-25 is IDENTIFICADOR 
+
+]           line 35 column 25-26 is PUNTUACION 
+
+NOT           line 35 column 27-30 is RESERVADA 
+
+NULL           line 35 column 31-35 is RESERVADA 
+
+,           line 35 column 35-36 is PUNTUACION 
+
+[           line 36 column 2-3 is PUNTUACION 
+
+PlacaBus           line 36 column 3-11 is IDENTIFICADOR 
+
+]           line 36 column 11-12 is PUNTUACION 
+
+[           line 36 column 13-14 is PUNTUACION 
+
+nvarchar           line 36 column 14-22 is IDENTIFICADOR 
+
+]           line 36 column 22-23 is PUNTUACION 
+
+(           line 36 column 23-24 is PUNTUACION 
+
+128           line 36 column 24-27 is CONSTANTE_ENTERA 
+
+)           line 36 column 27-28 is PUNTUACION 
+
+NULL           line 36 column 29-33 is RESERVADA 
+
+,           line 36 column 33-34 is PUNTUACION 
+
+PRIMARY           line 37 column 1-8 is RESERVADA 
+
+KEY           line 37 column 9-12 is RESERVADA 
+
+CLUSTERED           line 37 column 13-22 is RESERVADA 
+
+(           line 38 column 1-2 is PUNTUACION 
+
+[           line 39 column 2-3 is PUNTUACION 
+
+Codigo           line 39 column 3-9 is IDENTIFICADOR 
+
+]           line 39 column 9-10 is PUNTUACION 
+
+ASC           line 39 column 11-14 is RESERVADA 
+
+)           line 40 column 1-2 is PUNTUACION 
+
+)           line 41 column 1-2 is PUNTUACION 
+
+ON           line 41 column 3-5 is RESERVADA 
+
+[           line 41 column 6-7 is PUNTUACION 
+
+PRIMARY           line 41 column 7-14 is RESERVADA 
+
+]           line 41 column 14-15 is PUNTUACION 
+
+GO           line 42 column 1-3 is RESERVADA 
+
+SET           line 44 column 1-4 is RESERVADA 
+
+ANSI_NULLS           line 44 column 5-15 is IDENTIFICADOR 
+
+ON           line 44 column 16-18 is RESERVADA 
+
+GO           line 45 column 1-3 is RESERVADA 
+
+SET           line 46 column 1-4 is RESERVADA 
+
+QUOTED_IDENTIFIER           line 46 column 5-22 is IDENTIFICADOR 
+
+ON           line 46 column 23-25 is RESERVADA 
+
+GO           line 47 column 1-3 is RESERVADA 
+
+CREATE           line 48 column 1-7 is RESERVADA 
+
+TABLE           line 48 column 8-13 is RESERVADA 
+
+[           line 48 column 14-15 is PUNTUACION 
+
+dbo           line 48 column 15-18 is IDENTIFICADOR 
+
+]           line 48 column 18-19 is PUNTUACION 
+
+.           line 48 column 19-20 is PUNTUACION 
+
+[           line 48 column 20-21 is PUNTUACION 
+
+Rutas           line 48 column 21-26 is IDENTIFICADOR 
+
+]           line 48 column 26-27 is PUNTUACION 
+
+(           line 48 column 27-28 is PUNTUACION 
+
+[           line 49 column 2-3 is PUNTUACION 
+
+Codigo           line 49 column 3-9 is IDENTIFICADOR 
+
+]           line 49 column 9-10 is PUNTUACION 
+
+[           line 49 column 11-12 is PUNTUACION 
+
+int           line 49 column 12-15 is IDENTIFICADOR 
+
+]           line 49 column 15-16 is PUNTUACION 
+
+IDENTITY           line 49 column 17-25 is RESERVADA 
+
+(           line 49 column 25-26 is PUNTUACION 
+
+1           line 49 column 26-27 is CONSTANTE_BOOLEANA 
+
+,           line 49 column 27-28 is PUNTUACION 
+
+1           line 49 column 28-29 is CONSTANTE_BOOLEANA 
+
+)           line 49 column 29-30 is PUNTUACION 
+
+NOT           line 49 column 31-34 is RESERVADA 
+
+NULL           line 49 column 35-39 is RESERVADA 
+
+,           line 49 column 39-40 is PUNTUACION 
+
+[           line 50 column 2-3 is PUNTUACION 
+
+Origen           line 50 column 3-9 is IDENTIFICADOR 
+
+]           line 50 column 9-10 is PUNTUACION 
+
+[           line 50 column 11-12 is PUNTUACION 
+
+nvarchar           line 50 column 12-20 is IDENTIFICADOR 
+
+]           line 50 column 20-21 is PUNTUACION 
+
+(           line 50 column 21-22 is PUNTUACION 
+
+128           line 50 column 22-25 is CONSTANTE_ENTERA 
+
+)           line 50 column 25-26 is PUNTUACION 
+
+NOT           line 50 column 27-30 is RESERVADA 
+
+NULL           line 50 column 31-35 is RESERVADA 
+
+,           line 50 column 35-36 is PUNTUACION 
+
+[           line 51 column 2-3 is PUNTUACION 
+
+Destino           line 51 column 3-10 is IDENTIFICADOR 
+
+]           line 51 column 10-11 is PUNTUACION 
+
+[           line 51 column 12-13 is PUNTUACION 
+
+nvarchar           line 51 column 13-21 is IDENTIFICADOR 
+
+]           line 51 column 21-22 is PUNTUACION 
+
+(           line 51 column 22-23 is PUNTUACION 
+
+128           line 51 column 23-26 is CONSTANTE_ENTERA 
+
+)           line 51 column 26-27 is PUNTUACION 
+
+NOT           line 51 column 28-31 is RESERVADA 
+
+NULL           line 51 column 32-36 is RESERVADA 
+
+,           line 51 column 36-37 is PUNTUACION 
+
+[           line 52 column 2-3 is PUNTUACION 
+
+Tiempo           line 52 column 3-9 is IDENTIFICADOR 
+
+]           line 52 column 9-10 is PUNTUACION 
+
+[           line 52 column 11-12 is PUNTUACION 
+
+nvarchar           line 52 column 12-20 is IDENTIFICADOR 
+
+]           line 52 column 20-21 is PUNTUACION 
+
+(           line 52 column 21-22 is PUNTUACION 
+
+128           line 52 column 22-25 is CONSTANTE_ENTERA 
+
+)           line 52 column 25-26 is PUNTUACION 
+
+NOT           line 52 column 27-30 is RESERVADA 
+
+NULL           line 52 column 31-35 is RESERVADA 
+
+,           line 52 column 35-36 is PUNTUACION 
+
+[           line 53 column 2-3 is PUNTUACION 
+
+Costo           line 53 column 3-8 is IDENTIFICADOR 
+
+]           line 53 column 8-9 is PUNTUACION 
+
+[           line 53 column 10-11 is PUNTUACION 
+
+int           line 53 column 11-14 is IDENTIFICADOR 
+
+]           line 53 column 14-15 is PUNTUACION 
+
+NULL           line 53 column 16-20 is RESERVADA 
+
+,           line 53 column 20-21 is PUNTUACION 
+
+PRIMARY           line 54 column 1-8 is RESERVADA 
+
+KEY           line 54 column 9-12 is RESERVADA 
+
+CLUSTERED           line 54 column 13-22 is RESERVADA 
+
+(           line 55 column 1-2 is PUNTUACION 
+
+[           line 56 column 2-3 is PUNTUACION 
+
+Codigo           line 56 column 3-9 is IDENTIFICADOR 
+
+]           line 56 column 9-10 is PUNTUACION 
+
+ASC           line 56 column 11-14 is RESERVADA 
+
+)           line 57 column 1-2 is PUNTUACION 
+
+)           line 58 column 1-2 is PUNTUACION 
+
+ON           line 58 column 3-5 is RESERVADA 
+
+[           line 58 column 6-7 is PUNTUACION 
+
+PRIMARY           line 58 column 7-14 is RESERVADA 
+
+]           line 58 column 14-15 is PUNTUACION 
+
+GO           line 59 column 1-3 is RESERVADA 
+
+DECLARE           line 61 column 1-8 is RESERVADA 
+
+@           line 61 column 9-10 is PUNTUACION 
+
+var           line 61 column 10-13 is IDENTIFICADOR 
+
+CHAR           line 61 column 14-18 is RESERVADA 
+
+(           line 61 column 18-19 is PUNTUACION 
+
+100           line 61 column 19-22 is CONSTANTE_ENTERA 
+
+)           line 61 column 22-23 is PUNTUACION 
+
+;           line 61 column 23-24 is PUNTUACION 
+
+set           line 62 column 1-4 is IDENTIFICADOR 
+
+@           line 62 column 5-6 is PUNTUACION 
+
+var           line 62 column 6-9 is IDENTIFICADOR 
+
+=           line 62 column 10-11 is PUNTUACION 
+
+*** Error line 62** Unrecognized char: '$'
+
+'?'           line 62 column 13-16 is STRING 
+
+;           line 62 column 16-17 is PUNTUACION 
+
+DROP           line 65 column 1-5 is RESERVADA 
+
+DATABASE           line 65 column 6-14 is RESERVADA 
+
+[           line 65 column 15-16 is PUNTUACION 
+
+LineaDorada           line 65 column 16-27 is IDENTIFICADOR 
+
+]           line 65 column 27-28 is PUNTUACION 
+
+GO           line 66 column 1-3 is RESERVADA 
+
+CREATE           line 68 column 1-7 is RESERVADA 
+
+DATABASE           line 68 column 8-16 is RESERVADA 
+
+[           line 68 column 17-18 is PUNTUACION 
+
+LineaDorada           line 68 column 18-29 is IDENTIFICADOR 
+
+]           line 68 column 29-30 is PUNTUACION 
+
+CONTAINMENT           line 69 column 2-13 is IDENTIFICADOR 
+
+=           line 69 column 14-15 is PUNTUACION 
+
+NULL           line 69 column 16-20 is RESERVADA 
+
+ON           line 70 column 2-4 is RESERVADA 
+
+PRIMARY           line 70 column 6-13 is RESERVADA 
+
+(           line 71 column 1-2 is PUNTUACION 
+
+NAME           line 71 column 3-7 is IDENTIFICADOR 
+
+=           line 71 column 8-9 is PUNTUACION 
+
+'LineaDorada'           line 71 column 10-23 is STRING 
+
+,           line 71 column 23-24 is PUNTUACION 
+
+FILENAME           line 71 column 25-33 is IDENTIFICADOR 
+
+=           line 71 column 34-35 is PUNTUACION 
+
+'D:\NDocuments\SQL\MSSQL14.MSSQLSERVER\MSSQL\DATA\LineaDorada.mdf'           line 71 column 36-102 is STRING 
+
+,           line 71 column 103-104 is PUNTUACION 
+
+SIZE           line 71 column 105-109 is RESERVADA 
+
+=           line 71 column 110-111 is PUNTUACION 
+
+0           line 71 column 112-113 is CONSTANTE_BOOLEANA 
+
+X8192KB           line 71 column 113-120 is IDENTIFICADOR 
+
+,           line 71 column 121-122 is PUNTUACION 
+
+MAXSIZE           line 71 column 123-130 is IDENTIFICADOR 
+
+=           line 71 column 131-132 is PUNTUACION 
+
+UNLIMITED           line 71 column 133-142 is IDENTIFICADOR 
+
+,           line 71 column 142-143 is PUNTUACION 
+
+FILEGROWTH           line 71 column 144-154 is IDENTIFICADOR 
+
+=           line 71 column 155-156 is PUNTUACION 
+
+00000000000.00000000022e+2           line 71 column 157-183 is FLOAT 
+
+)           line 71 column 184-185 is PUNTUACION 
+
+LOG           line 72 column 2-5 is IDENTIFICADOR 
+
+ON           line 72 column 6-8 is RESERVADA 
+
+(           line 73 column 1-2 is PUNTUACION 
+
+NAME           line 73 column 3-7 is IDENTIFICADOR 
+
+=           line 73 column 8-9 is PUNTUACION 
+
+'LineaDorada_log'           line 73 column 10-27 is STRING 
+
+,           line 73 column 27-28 is PUNTUACION 
+
+FILENAME           line 73 column 29-37 is IDENTIFICADOR 
+
+=           line 73 column 38-39 is PUNTUACION 
+
+'D:\NDocuments\SQL\MSSQL14.MSSQLSERVER\MSSQL\Log\LineaDorada_log.ldf'           line 73 column 40-109 is STRING 
+
+,           line 73 column 110-111 is PUNTUACION 
+
+SIZE           line 73 column 112-116 is RESERVADA 
+
+=           line 73 column 117-118 is PUNTUACION 
+
+8192           line 73 column 119-123 is CONSTANTE_ENTERA 
+
+KB           line 73 column 123-125 is IDENTIFICADOR 
+
+,           line 73 column 126-127 is PUNTUACION 
+
+MAXSIZE           line 73 column 128-135 is IDENTIFICADOR 
+
+=           line 73 column 136-137 is PUNTUACION 
+
+2048           line 73 column 138-142 is CONSTANTE_ENTERA 
+
+GB           line 73 column 142-144 is IDENTIFICADOR 
+
+,           line 73 column 145-146 is PUNTUACION 
+
+FILEGROWTH           line 73 column 147-157 is IDENTIFICADOR 
+
+=           line 73 column 158-159 is PUNTUACION 
+
+.           line 73 column 160-161 is PUNTUACION 
+
+12           line 73 column 161-163 is CONSTANTE_ENTERA 
+
+E0000000002           line 73 column 163-174 is IDENTIFICADOR 
+
+)           line 73 column 175-176 is PUNTUACION 
+
+GO           line 74 column 1-3 is RESERVADA 
+
+ALTER           line 75 column 1-6 is RESERVADA 
+
+DATABASE           line 75 column 7-15 is RESERVADA 
+
+[           line 75 column 16-17 is PUNTUACION 
+
+LineaDorada           line 75 column 17-28 is IDENTIFICADOR 
+
+]           line 75 column 28-29 is PUNTUACION 
+
+SET           line 75 column 30-33 is RESERVADA 
+
+COMPATIBILITY_LEVEL           line 75 column 34-53 is IDENTIFICADOR 
+
+=           line 75 column 54-55 is PUNTUACION 
+
+140           line 75 column 56-59 is CONSTANTE_ENTERA 
+
+GO           line 76 column 1-3 is RESERVADA 
+
+IF           line 77 column 1-3 is RESERVADA 
+
+(           line 77 column 4-5 is PUNTUACION 
+
+1           line 77 column 5-6 is CONSTANTE_BOOLEANA 
+
+=           line 77 column 7-8 is PUNTUACION 
+
+SERVERPROPERTYGLOBALFULLTEXTSERVICEGENERALPROPERTY***Truncado por el largo***(           line 77 column 59-60 is PUNTUACION 
+
+'IsFullTextInstalled'           line 77 column 60-81 is STRING 
+
+)           line 77 column 81-82 is PUNTUACION 
+
+)           line 77 column 82-83 is PUNTUACION 
+
+begin           line 78 column 1-6 is IDENTIFICADOR 
+
+EXEC           line 79 column 1-5 is RESERVADA 
+
+[           line 79 column 6-7 is PUNTUACION 
+
+LineaDorada           line 79 column 7-18 is IDENTIFICADOR 
+
+]           line 79 column 18-19 is PUNTUACION 
+
+.           line 79 column 19-20 is PUNTUACION 
+
+[           line 79 column 20-21 is PUNTUACION 
+
+dbo           line 79 column 21-24 is IDENTIFICADOR 
+
+]           line 79 column 24-25 is PUNTUACION 
+
+.           line 79 column 25-26 is PUNTUACION 
+
+[           line 79 column 26-27 is PUNTUACION 
+
+sp_fulltext_database           line 79 column 27-47 is IDENTIFICADOR 
+
+]           line 79 column 47-48 is PUNTUACION 
+
+@           line 79 column 49-50 is PUNTUACION 
+
+action           line 79 column 50-56 is IDENTIFICADOR 
+
+=           line 79 column 57-58 is PUNTUACION 
+
+'enable'           line 79 column 59-67 is STRING 
+
+end           line 80 column 1-4 is IDENTIFICADOR 
+
+GO           line 81 column 1-3 is RESERVADA 
+
+DECLARE           line 83 column 1-8 is RESERVADA 
+
+@           line 83 column 9-10 is PUNTUACION 
+
+number           line 83 column 10-16 is IDENTIFICADOR 
+
+INT           line 83 column 17-20 is RESERVADA 
+
+;           line 83 column 20-21 is PUNTUACION 
+
+SET           line 84 column 1-4 is RESERVADA 
+
+@           line 84 column 5-6 is PUNTUACION 
+
+number           line 84 column 6-12 is IDENTIFICADOR 
+
+=           line 84 column 13-14 is PUNTUACION 
+
+-           line 84 column 15-16 is PUNTUACION 
+
+0000000000000000000000000000001           line 84 column 16-47 is CONSTANTE_ENTERA 
+
+;           line 84 column 47-48 is PUNTUACION 
+
+*** Error line 86** Unrecognized char: '/* comment without ending, should continue
+
+DECLARE @path VARCHAR(MAX); 
+SET @path = ' This a string without ending
+not the same string, all should be ids except _thiserror';'
+
+FIN
