@@ -22,13 +22,13 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 DocumentationComment = "/**" {CommentContent} "*"+ "/" 
 TraditionalComment   = "--" [^*] | "--"
 MultiLine = "/*" {CommentContent} "*"+ "/"
-MULTILINE_COMMENT = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+MULTILINE_COMMENT = "/*" ~"*/" | "/*" "*"+ "/"
 UNFINISHED_COMMENT = "/*" [^*]+
 SINGLELINE_COMMENT = "--" [^\r\n]* [\r|\n|\r\n]?
 
 Comment = {MultiLine} | {TraditionalComment} | {EndOfLineComment} | {DocumentationComment} | {MULTILINE_COMMENT} | {SINGLELINE_COMMENT}
 
-IntConstant = [0-9]* | "0x"[0-9a-fA-F]+ |"0X"[0-9a-fA-F]+ 
+IntConstant = [0-9]* 
 
 BoolConstant = "0" | "1" | "NULL"
 
@@ -92,7 +92,7 @@ Puntuaction="+"| "-"| "*"| "/"| "%"| "<"| "<="| ">"| ">="| "="| "=="| "!="|
 {Reserved} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return RESERVADA;}
 {Identifier} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IDENTIFICADOR;}
 {WhiteSpace}                   { /* ignore */ }
-\.[0-9]*"E"[0-9]* | \.[0-9]*"E"[0-9]* {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;} 
+
 {Puntuaction} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTUACION;}
 {Comment}                      { /* ignore */ }
 {BoolConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_BOOLEANA;}
