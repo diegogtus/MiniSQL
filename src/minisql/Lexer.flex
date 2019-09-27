@@ -23,7 +23,7 @@ DocumentationComment = "/**" {CommentContent} "*"+ "/"
 TraditionalComment   = "--" [^*] | "--"
 MultiLine = "/*" {CommentContent} "*"+ "/"
 MULTILINE_COMMENT = "/*" ~"*/" | "/*" "*"+ "/"
-UNFINISHED_COMMENT = "/*" [^*]+
+UNFINISHED_COMMENT = "/*" [^*\n]+
 SINGLELINE_COMMENT = "--" [^\r\n]* [\r|\n|\r\n]?
 
 Comment = {MultiLine} | {TraditionalComment} | {EndOfLineComment} | {DocumentationComment} | {MULTILINE_COMMENT} | {SINGLELINE_COMMENT}
