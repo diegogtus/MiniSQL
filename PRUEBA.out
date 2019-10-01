@@ -1,0 +1,23 @@
+DROP           line 1 column 1-5 is DROP 
+
+HOLA           line 1 column 6-10 is IDENTIFICADOR 
+
+TABLE           line 1 column 11-16 is TABLE 
+
+;           line 1 column 16-17 is PUNTOYCOMA 
+
+DROP           line 2 column 1-5 is DROP 
+
+TABLE           line 2 column 6-11 is TABLE 
+
+hola           line 2 column 12-16 is IDENTIFICADOR 
+
+;           line 2 column 16-17 is PUNTOYCOMA 
+
+DROP           line 3 column 1-5 is DROP 
+
+TABLE           line 3 column 6-11 is TABLE 
+
+hola           line 3 column 12-16 is IDENTIFICADOR 
+
+FINERROR DE SINTAXIS EN TOKEN 1

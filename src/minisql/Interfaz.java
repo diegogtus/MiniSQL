@@ -24,6 +24,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -37,8 +39,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Interfaz extends javax.swing.JFrame {
     
     String NombreArchivo=null;
+    List TokenList;
+    Integer Position;
     /** Creates new form Interfaz */
     public Interfaz() {
+        this.Position = 0;
+        this.TokenList = new ArrayList();
         initComponents();
     }
 
@@ -260,22 +266,9 @@ public class Interfaz extends javax.swing.JFrame {
     }
     
     public void ProbarLexerFile(String path) throws IOException{
-//    File fichero=new File("fichero.txt");//creando fichero txt en raiz
-//    PrintWriter writer;
-//    try{
-//        writer=new PrintWriter(fichero);
-//        writer.print(txta_Input.getText());//ingresado ecuacion
-//        writer.close();
-//    }
-//    catch(FileNotFoundException ex){
-//        Logger.getLogger(Principal_frm.class.getName()).log(Level.SEVERE, null, ex);
-//    }
     Reader reader;
     reader = new BufferedReader(new FileReader(path));
     Lexer lexer=new Lexer(reader);
-    int linea;
-    linea=1;
-
     //se comienza a evaluar cada caracter
     while(true){
         Token token=lexer.yylex();
@@ -283,7 +276,7 @@ public class Interfaz extends javax.swing.JFrame {
    
         if(token==null){
             txta_Output.append("FIN");//mostrando los resultados
-            txta_Output.append("\n");
+            Analyzer();
             return;
         }//termina evaluacion
         switch(token){
@@ -296,22 +289,366 @@ public class Interfaz extends javax.swing.JFrame {
                 break;
        
             case IDENTIFICADOR: //aqui se guardan las variables y los numeros
+                    TokenList.add(token);
                     if(lexer.yylength()>31){
                         txta_Output.append(lexer.yytext()+"***Truncado por el largo***");
                     }
                     else{
+                        
                         txta_Output.append(lexer.yytext()+"           line "+lexer.line+
                        " column "+ lexer.column+"-"+(Integer.parseInt(lexer.column)+lexer.yylength())+ " is " +token+" "+"\n");
                         txta_Output.append("\n");
                     }
                 break;
                 
+            case SALTO:
+            case RESERVADA:
             case PUNTUACION:
-            case STRING:
-            case FLOAT:
             case CONSTANTE_BOOLEANA:
-            case CONSTANTE_ENTERA:              
-            case RESERVADA://aqui se guardan las variables y los numeros
+            case CONSTANTE_ENTERA:
+            case STRING:
+            case OPERADOR:
+            case SUMA:
+            case RESTA:
+            case MULTIPLICACION:
+            case DIVISION:
+            case PORCENTAJE:
+            case MENOR:
+            case MENORIGUAL:
+            case MAYOR:
+            case MAYORIGUAL:
+            case ASIGNAR:
+            case IGUAL:
+            case DIFERENTE:
+            case NEGACION:
+            case PUNTOYCOMA:
+            case COMA:
+            case PUNTO:
+            case CORCHETEIZQ:
+            case CORCHETEDER:
+            case PARENTESISIZQ:
+            case PARENTESISDER:
+            case LLAVEIZQ:
+            case LLAVEDER:
+            case CORCHETES:
+            case PARENTESIS:
+            case LLAVES:
+            case ARROBA:
+            case NUMERAL:
+            case DOBLENUMERAL:
+            case ABSOLUTE:
+            case ACTION:
+            case ADA:
+            case ADD:
+            case ALL:
+            case ALLOCATE:
+            case ALTER:
+            case AND:
+            case ANY:
+            case ARE:
+            case AS:
+            case ASC:
+            case ASSERTION:
+            case AT:
+            case AUTHORIZATION:
+            case AVG:
+            case BACKUP:
+            case BEGIN:
+            case BETWEEN:
+            case BIT:
+            case BIT_LENGTH:
+            case BOTH:
+            case BREAK:
+            case BROWSE:
+            case BULK:
+            case BY:
+            case CASCADE:
+            case CASCADED:
+            case CASE:
+            case CAST:
+            case CATALOG:
+            case CHAR:
+            case CHAR_LENGTH:
+            case CHARACTER:
+            case CHARACTER_LENGTH:
+            case CHECK:
+            case CHECKPOINT:
+            case CLOSE:
+            case CLUSTERED:
+            case COALESCE:
+            case COLLATE:
+            case COLLATION:
+            case COLUMN:
+            case COMMIT:
+            case COMPUTE:
+            case CONNECT:
+            case CONNECTION:
+            case CONSTRAINT:
+            case CONSTRAINTS:
+            case CONTAINS:
+            case CONTAINSTABLE:
+            case CONTINUE:
+            case CONVERT:
+            case CORRESPONDING:
+            case COUNT:
+            case CREATE:
+            case CROSS:
+            case CURRENT:
+            case CURRENT_DATE:
+            case CURRENT_TIME:
+            case CURRENT_TIMESTAMP:
+            case CURRENT_USER:
+            case CURSOR:
+            case DATABASE:
+            case DATE:
+            case DAY:
+            case DBCC:
+            case DEALLOCATE:
+            case DEC:
+            case DECIMAL:
+            case DECLARE:
+            case DEFAULT:
+            case DEFERRABLE:
+            case DEFERRED:
+            case DELETE:
+            case DENY:
+            case DESC:
+            case DESCRIBE:
+            case DESCRIPTOR:
+            case DIAGNOSTICS:
+            case DISCONNECT:
+            case DISK:
+            case DISTINCT:
+            case DISTRIBUTED:
+            case DOMAIN:
+            case DOUBLE:
+            case DROP:
+            case DUMP:
+            case ELSE:
+            case END:
+            case END_EXEC:
+            case ERRLVL:
+            case ESCAPE:
+            case EXCEPT:
+            case EXCEPTION:
+            case EXEC:
+            case EXECUTE:
+            case EXISTS:
+            case EXIT:
+            case EXTERNAL:
+            case EXTRACT:
+            case FALSE:
+            case FETCH:
+            case FILE:
+            case FILLFACTOR:
+            case FIRST:
+            case FLOAT:
+            case FOR:
+            case FOREIGN:
+            case FORTRAN:
+            case FOUND:
+            case FREETEXT:
+            case FREETEXTTABLE:
+            case FROM:
+            case FULL:
+            case FUNCTION:
+            case GET:
+            case GLOBAL:
+            case GO:
+            case GOTO:
+            case GRANT:
+            case GROUP:
+            case HAVING:
+            case HOLDLOCK:
+            case HOUR:
+            case IDENTITY:
+            case IDENTITY_INSERT:
+            case IDENTITYCOL:
+            case IF:
+            case IMMEDIATE:
+            case IN:
+            case INCLUDE:
+            case INDEX:
+            case INDICATOR:
+            case INITIALLY:
+            case INNER:
+            case INPUT:
+            case INSENSITIVE:
+            case INSERT:
+            case INT:
+            case INTEGER:
+            case INTERSECT:
+            case INTERVAL:
+            case INTO:
+            case IS:
+            case ISOLATION:
+            case JOIN:
+            case KEY:
+            case KILL:
+            case LANGUAGE:
+            case LAST:
+            case LEADING:
+            case LEFT:
+            case LEVEL:
+            case LIKE:
+            case LINENO:
+            case LOAD:
+            case LOCAL:
+            case LOWER:
+            case MATCH:
+            case MAX:
+            case MERGE:
+            case MIN:
+            case MINUTE:
+            case MODULE:
+            case MONTH:
+            case NAMES:
+            case NATIONAL:
+            case NATURAL:
+            case NCHAR:
+            case NEXT:
+            case NO:
+            case NOCHECK:
+            case NONCLUSTERED:
+            case NONE:
+            case NOT:
+            case NULL:
+            case NULLIF:
+            case NUMERIC:
+            case OCTET_LENGTH:
+            case OF:
+            case OFF:
+            case OFFSETS:
+            case ON:
+            case ONLY:
+            case OPEN:
+            case OPENDATASOURCE:
+            case OPENQUERY:
+            case OPENROWSET:
+            case OPENXML:
+            case OPTION:
+            case OR:
+            case ORDER:
+            case OUTER:
+            case OUTPUT:
+            case OVER:
+            case OVERLAPS:
+            case PAD:
+            case PARTIAL:
+            case PASCAL:
+            case PERCENT:
+            case PIVOT:
+            case PLAN:
+            case POSITION:
+            case PRECISION:
+            case PREPARE:
+            case PRESERVE:
+            case PRIMARY:
+            case PRINT:
+            case PRIOR:
+            case PRIVILEGES:
+            case PROC:
+            case PROCEDURE:
+            case PUBLIC:
+            case RAISERROR:
+            case READ:
+            case READTEXT:
+            case REAL:
+            case RECONFIGURE:
+            case REFERENCES:
+            case RELATIVE:
+            case REPLICATION:
+            case RESTORE:
+            case RESTRICT:
+            case RETURN:
+            case REVERT:
+            case REVOKE:
+            case RIGHT:
+            case ROLLBACK:
+            case ROWCOUNT:
+            case ROWGUIDCOL:
+            case ROWS:
+            case RULE:
+            case SAVE:
+            case SCHEMA:
+            case SCROLL:
+            case SECOND:
+            case SECTION:
+            case SECURITYAUDIT:
+            case SELECT:
+            case SEMANTICKEYPHRASETABLE:
+            case SEMANTICSIMILARITYDETAILSTABLE:
+            case SEMANTICSIMILARITYTABLE:
+            case SESSION:
+            case SESSION_USER:
+            case SET:
+            case SETUSER:
+            case SHUTDOWN:
+            case SIZE:
+            case SMALLINT:
+            case SOME:
+            case SPACE:
+            case SQL:
+            case SQLCA:
+            case SQLCODE:
+            case SQLERROR:
+            case SQLSTATE:
+            case SQLWARNING:
+            case STATISTICS:
+            case SUBSTRING:
+            case SUM:
+            case SYSTEM_USER:
+            case TABLE:
+            case TABLESAMPLE:
+            case TEMPORARY:
+            case TEXTSIZE:
+            case THEN:
+            case TIME:
+            case TIMESTAMP:
+            case TIMEZONE_HOUR:
+            case TIMEZONE_MINUTE:
+            case TO:
+            case TOP:
+            case TRAILING:
+            case TRAN:
+            case TRANSACTION:
+            case TRANSLATE:
+            case TRANSLATION:
+            case TRIGGER:
+            case TRIM:
+            case TRUE:
+            case TRUNCATE:
+            case TRY_CONVERT:
+            case TSEQUAL:
+            case UNION:
+            case UNIQUE:
+            case UNKNOWN:
+            case UNPIVOT:
+            case UPDATE:
+            case UPDATETEXT:
+            case UPPER:
+            case USAGE:
+            case USE:
+            case USER:
+            case USING:
+            case VALUE:
+            case VALUES:
+            case VARCHAR:
+            case VARYING:
+            case VIEW:
+            case WAITFOR:
+            case WHEN:
+            case WHENEVER:
+            case WHERE:
+            case WHILE:
+            case WITH:
+            case WITHINGROUP:
+            case WORK:
+            case WRITE:
+            case WRITETEXT:
+            case YEAR:
+            case ZONE://aqui se guardan las variables y los numeros
+                TokenList.add(token);
                 txta_Output.append(lexer.yytext()+"           line "+lexer.line+
                        " column "+  lexer.column+"-"+(Integer.parseInt(lexer.column)+lexer.yylength())+ " is " +token+" "+"\n");
                 txta_Output.append("\n");
@@ -321,4 +658,153 @@ public class Interfaz extends javax.swing.JFrame {
         }	
     }	
 }//termina mi edicion
+
+    private void Analyzer() {
+        while(Position<TokenList.size()){
+            switch (TokenList.get(Position).toString()){
+                case "ALTER":
+                    Position++;
+                    break;
+                case "CREATE":
+                    Position++;
+                    break;
+                case "DROP":
+                    Position++;
+                    switch(TokenList.get(Position).toString()){
+                        case "TABLE":
+                            Position=Position-1;
+                            DropT();
+                            break;
+                        case "DATABASE":
+                            DropD();
+                            break;
+                        case "LOGIN":
+                            DropL();
+                            break;
+                        case "INDEX":
+                            DropI();
+                            break;
+                        case "VIEW":
+                            DropV();
+                            break;    
+                        default:
+                           // Look4SemiColon();
+                            Position++;
+                            JOptionPane.showMessageDialog(null, 
+                    "ERROR"+NombreArchivo, "¡ERROR EN SINTAXIS DROP!",JOptionPane.WARNING_MESSAGE);
+                            Analyzer();
+                            break;
+                    }
+                    break;
+                case "TRUNCATE":
+                    Position++;
+                    break;
+                case "UPDATE":
+                    Position++;
+                    break;
+                case "ERROR":
+                default:
+                    Position++;
+                    Look4SemiColon();
+                            JOptionPane.showMessageDialog(null, 
+                    "ERROR"+NombreArchivo, "¡ERROR EN SINTAXIS DROP!",JOptionPane.WARNING_MESSAGE);
+                    break;
+                }
+       }
+    }
+    private void DropT() {
+        switch(TokenList.get(Position).toString()){
+            case "DROP":
+                Position++;
+                switch(TokenList.get(Position).toString()){
+                    case "TABLE":
+                        Position++;
+                        DropT2();
+                        break;
+                    default:
+                        Analyzer();
+                        break;
+                }
+                break;
+            default:
+                Analyzer();
+                break;
+        }
+    }
+    private void DropT2() {
+        switch(TokenList.get(Position).toString()){
+            case "IF":
+                Position++;
+                switch(TokenList.get(Position).toString()){
+                    case "EXISTS":
+                        Position++;
+                        DropT3();
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                Position++;
+                DropT3();
+                break;
+        }
+    }
+    private void DropT3() {
+        switch(TokenList.get(Position).toString()){
+            //MODIFICAR LUEGO ESTE METODO
+            case "OBJECT":
+                Position++;
+                DropT4();
+                break;
+            default:
+                Look4SemiColon();
+                break;
+        }
+    }
+    
+    private void DropT4() {
+        switch(TokenList.get(Position).toString()){
+            case ",":
+                Position++;
+                DropT3();
+                break;
+            case ";":
+                Position++;
+                Analyzer();
+                JOptionPane.showMessageDialog(null, 
+                    "BIEN"+NombreArchivo, "¡BIEN!",JOptionPane.WARNING_MESSAGE);
+                break;
+            default:
+                Position++;
+                Analyzer();
+                break;
+        }
+    }
+    
+    private void DropD() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void DropL() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void DropI() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void DropV() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }   
+
+
+    private void Look4SemiColon() {
+        txta_Output.append("ERROR DE SINTAXIS EN TOKEN "+ Position.toString());
+        for (int i = Position; i < TokenList.size()-1 ; i++) {
+            if (TokenList.get(Position)==";") {
+                Analyzer();
+            }
+        }
+    }
 }

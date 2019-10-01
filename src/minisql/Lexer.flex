@@ -34,9 +34,7 @@ BoolConstant = "0" | "1" | "NULL"
 
 Identifier = [_a-zA-Z][_a-zA-Z0-9]*
 
-        "CASE"|"CAST"|"CATALOG"|"CHAR"|"CHAR_LENGTH"|"CHARACTER"|"CHARACTER_LENGTH"|
-        "CHECK"|"CHECKPOINT"|"CLOSE"|"CLUSTERED"|"COALESCE"|"COLLATE"|"COLLATION"|
-/*Operadores*/
+/* Operadores */
 ABSOLUTE = "ABSOLUTE"
 ACTION = "ACTION"
 ADA = "ADA"
@@ -363,49 +361,39 @@ ZONE = "ZONE"
  ASIGNAR =  "=" 
  IGUAL =  "==" 
  DIFERENTE =  "!=" 
- AND =  "&&" 
- OR =  "||"
+ OP_AND =  "&&" 
+ OP_OR =  "||"
  NEGACION =  "!" 
  PUNTOYCOMA =  ";" 
  COMA =  "," 
  PUNTO =  "." 
- CORCHETE IZQ =  "[" 
- CORCHETE DER =  "]" 
- PARENTESIS IZQ =  "(" 
- PARENTESIS DER =  ")" 
- LLAVE IZQ =  "{" 
- LLAVE DER =  "}" 
+ CORCHETEIZQ =  "[" 
+ CORCHETEDER =  "]" 
+ PARENTESISIZQ =  "(" 
+ PARENTESISDER =  ")" 
+ LLAVEIZQ =  "{" 
+ LLAVEDER =  "}" 
  CORCHETES =  "[]" 
  PARENTESIS =  "()" 
  LLAVES =  "{}" 
  ARROBA =  "@" 
  NUMERAL =  "#" 
- DOBLE NUMERAL =  "##"
+ DOBLENUMERAL =  "##"
 
- vgfxfc ct4 %{
+%{
 	public String lexeme;
         public String column;
         public String line;
 %}
 %%
-
-
-[\n] {return SALTO;}
-
-{Reserved} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return RESERVADA;}
-{Identifier} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IDENTIFICADOR;}
 {WhiteSpace}                   { /* ignore */ }
 
-{Puntuaction} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTUACION;}
 {Comment}                      { /* ignore */ }
 {BoolConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_BOOLEANA;}
 {IntConstant} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CONSTANTE_ENTERA;}
 [-+]?[0-9]+"."|[-+]?[0-9]+"."([0-9]+|("E"|"e")[-+]?[0-9]+|[0-9]+("E"|"e")[-+]?[0-9]+) {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return FLOAT;}
 ['][^'\n]*['] { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return STRING;}
-{Puntuaction}                   { line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OPERADOR;}
 
-[^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;}
-{UNFINISHED_COMMENT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;} 
 
 {SUMA} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return SUMA;} 
 {RESTA} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return RESTA;} 
@@ -420,23 +408,23 @@ ZONE = "ZONE"
 {IGUAL} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IGUAL;} 
 {DIFERENTE} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return DIFERENTE;} 
 {AND} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return AND;} 
-{OR} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OR;}  
+{OP_OR} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return OP_OR;}  
 {NEGACION} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return NEGACION;} 
 {PUNTOYCOMA} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTOYCOMA;} 
 {COMA} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return COMA;} 
 {PUNTO} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PUNTO;} 
-{CORCHETE IZQ} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CORCHETE IZQ;} 
-{CORCHETE DER} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CORCHETE DER;} 
-{PARENTESIS IZQ} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PARENTESIS IZQ;} 
-{PARENTESIS DER} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PARENTESIS DER;} 
-{LLAVE IZQ} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return LLAVE IZQ;} 
-{LLAVE DER} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return LLAVE DER;} 
-{CORCHETE} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CORCHETE;} 
+{CORCHETEIZQ} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CORCHETEIZQ;} 
+{CORCHETEDER} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CORCHETEDER;} 
+{PARENTESISIZQ} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PARENTESISIZQ;} 
+{PARENTESISDER} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PARENTESISDER;} 
+{LLAVEIZQ} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return LLAVEIZQ;} 
+{LLAVEDER} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return LLAVEDER;} 
+{CORCHETES} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return CORCHETES;} 
 {PARENTESIS} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return PARENTESIS;} 
 {LLAVES} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return LLAVES;} 
 {ARROBA} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ARROBA;} 
 {NUMERAL} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return NUMERAL;} 
-{DOBLE NUMERAL} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return DOBLE NUMERAL;}
+{DOBLENUMERAL} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return DOBLENUMERAL;}
 
 {ABSOLUTE} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return ABSOLUTE;}
 {ACTION} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return ACTION;}
@@ -528,7 +516,7 @@ ZONE = "ZONE"
 {DUMP} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return DUMP;}
 {ELSE} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return ELSE;}
 {END} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return END;}
-{END_EXEC} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return END-EXEC;}
+{END_EXEC} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return END_EXEC;}
 {ERRLVL} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return ERRLVL;}
 {ESCAPE} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return ESCAPE;}
 {EXCEPT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return EXCEPT;}
@@ -750,3 +738,8 @@ ZONE = "ZONE"
 {WRITETEXT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return WRITETEXT;}
 {YEAR} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return YEAR;}
 {ZONE} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1); return ZONE;}
+
+{Identifier} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return IDENTIFICADOR;}
+
+[^]   {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;}
+{UNFINISHED_COMMENT} {line=Integer.toString(yyline+1);column=Integer.toString(yycolumn+1);return ERROR;} 
